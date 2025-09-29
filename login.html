@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Login e Cadastro</title>
+  <style>
+    /* ================= TEMAS ================= */
+    .light-theme {
+      --bg: #F9FAFB;
+      --fontColor: #111111;
+      --accent: #05E69F;
+      --accentHover: #05445E;
+      --btnFontColor: #FFFFFF;
+      --cardBg: #FFFFFF;
+    }
+
+    .dark-theme {
+      --bg: #0A0A0A;
+      --fontColor: #F5F5F5;
+      --accent: #62b28d;
+      --accentHover: #33D5F2;
+      --btnFontColor: #000000;
+      --cardBg: #1A1A1A;
+    }
+
+    /* ================= ESTILO BASE ================= */
+    body {
+      background: var(--bg);
+      color: var(--fontColor);
+      font-family: "Inter", sans-serif;
+      margin: 0;
+      padding: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 10px;
+      color: var(--fontColor);
+    }
+
+    form {
+      background: var(--cardBg);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 350px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      display: none; /* escondido por padrão */
+    }
+
+    form.active {
+      display: block; /* só mostra quando ativado */
+    }
+
+    input, button {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      background: var(--accent);
+      color: var(--btnFontColor);
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: var(--accentHover);
+    }
+
+    #mensagem {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    /* Links para alternar telas */
+    .toggle-link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: var(--accent);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="light-theme">
+  <h2 id="titulo">Login</h2>
+
+  <!-- Formulário de Login -->
+  <form id="loginForm" class="active">
+    <input type="text" id="loginUsuario" placeholder="Usuário" required>
+    <input type="password" id="loginSenha" placeholder="Senha" required>
+    <button type="submit">Entrar</button>
+  </form>
+
+  <!-- Formulário de Cadastro -->
+  <form id="cadastroForm">
+    <input type="text" id="usuario" placeholder="Usuário" required>
+    <input type="password" id="senha" placeholder="Senha" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <!-- Links para alternar -->
+  <span class="toggle-link" id="mostrarCadastro">Não tem conta? Cadastre-se</span>
+  <span class="toggle-link" id="mostrarLogin" style="display:none;">Já tem conta? Fazer login</span>
+
+  <p id="mensagem"></p>
+
+  <script>
+    let usuarios = [];
+
+    const loginForm = document.getElementById("loginForm");
+    const cadastroForm = document.getElementById("cadastroForm");
+    const mostrarCadastro = document.getElementById("mostrarCadastro");
+    const mostrarLogin = document.getElementById("mostrarLogin");
+    const titulo = document.getElementById("titulo");
+
+    // Alternar para cadastro
+    mostrarCadastro.addEventListener("click", () => {
+      loginForm.classList.remove("active");
+      cadastroForm.classList.add("active");
+      mostrarCadastro.style.display = "none";
+      mostrarLogin.style.display = "block";
+      titulo.innerText = "Cadastro";
+    });
+
+    // Alternar para login
+    mostrarLogin.addEventListener("click", () => {
+      cadastroForm.classList.remove("active");
+      loginForm.classList.add("active");
+      mostrarLogin.style.display = "none";
+      mostrarCadastro.style.display = "block";
+      titulo.innerText = "Login";
+    });
+
+    // Cadastro
+    cadastroForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById("usuario").value;
+      const senha = document.getElementById("senha").value;
+
+      if (usuarios.find(u => u.usuario === usuario)) {
+        document.getElementById("mensagem").innerText = "Usuário já existe!";
+        return;
+      }
+
+      usuarios.push({ usuario, senha });
+      document.getElementById("mensagem").innerText = "Cadastro realizado!";
+      this.reset();
+    });
+
+    // Login
+    loginForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById("loginUsuario").value;
+      const senha = document.getElementById("loginSenha").value;
+
+      const encontrado = usuarios.find(u => u.usuario === usuario && u.senha === senha);
+
+      if (encontrado) {
+        document.getElementById("mensagem").innerText = "Login realizado com sucesso!";
+      } else {
+        document.getElementById("mensagem").innerText = "Usuário ou senha incorretos!";
+      }
+    });
+  </script>
+</body>
+</html>
