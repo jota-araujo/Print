@@ -2,176 +2,79 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Login e Cadastro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Pré-diagnóstico</title>
   <style>
-    /* ================= TEMAS ================= */
-    .light-theme {
-      --bg: #F9FAFB;
-      --fontColor: #111111;
-      --accent: #62B28D;
-      --accentHover: #4B9472;
-      --btnFontColor: #FFFFFF;
-      --cardBg: #FFFFFF;
-    }
-
-    .dark-theme {
-      --bg: #0A0A0A;
-      --fontColor: #F5F5F5;
-      --accent: #62b28d;
-      --accentHover: #4B9472;
-      --btnFontColor: #000000;
-      --cardBg: #1A1A1A;
-    }
-
-    /* ================= ESTILO BASE ================= */
     body {
-      background: var(--bg);
-      color: var(--fontColor);
-      font-family: "Inter", sans-serif;
       margin: 0;
-      padding: 20px;
-      transition: background 0.3s, color 0.3s;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f9f9f9;
     }
 
-    h2 {
-      text-align: center;
-      margin-top: 10px;
-      color: var(--fontColor);
-    }
-
-    form {
-      background: var(--cardBg);
+    .auth-box {
+      background: white;
       padding: 20px;
       border-radius: 10px;
-      margin: 20px auto;
-      max-width: 350px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      display: none; /* escondido por padrão */
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
     }
 
-    form.active {
-      display: block; /* só mostra quando ativado */
+    .auth-box h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
     }
 
-    input, button {
-      display: block;
-      width: 100%;
-      margin: 10px 0;
+    .auth-box input {
+      width: 90%;
       padding: 10px;
-      border-radius: 8px;
+      margin: 8px 0;
       border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .auth-box button {
+      width: 100%;
+      padding: 10px;
       font-size: 16px;
-    }
-
-    button {
-      background: var(--accent);
-      color: var(--btnFontColor);
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    button:hover {
-      background: var(--accentHover);
-    }
-
-    #mensagem {
-      margin-top: 20px;
-      font-weight: bold;
-      text-align: center;
-    }
-
-    /* Links para alternar telas */
-    .toggle-link {
-      display: block;
-      text-align: center;
       margin-top: 10px;
-      color: var(--accent);
+      background-color: #62b28d;
+      color: white;
+      border: none;
+      border-radius: 8px;
       cursor: pointer;
+    }
+
+    .auth-box button:hover {
+      background-color: #4d906f;
     }
   </style>
 </head>
-<body class="light-theme">
-  <h2 id="titulo">Login</h2>
+<body>
 
-  <!-- Formulário de Login -->
-  <form id="loginForm" class="active">
-    <input type="text" id="loginUsuario" placeholder="Usuário" required>
-    <input type="password" id="loginSenha" placeholder="Senha" required>
-    <button type="submit">Entrar</button>
-  </form>
-
-  <!-- Formulário de Cadastro -->
-  <form id="cadastroForm">
-    <input type="text" id="usuario" placeholder="Usuário" required>
-    <input type="password" id="senha" placeholder="Senha" required>
-    <button type="submit">Cadastrar</button>
-  </form>
-
-  <!-- Links para alternar -->
-  <span class="toggle-link" id="mostrarCadastro">Não tem conta? Cadastre-se</span>
-  <span class="toggle-link" id="mostrarLogin" style="display:none;">Já tem conta? Fazer login</span>
-
-  <p id="mensagem"></p>
+  <div class="auth-box">
+    <h2>Acessar Conta</h2>
+    <input type="text" placeholder="Usuário" id="usuario">
+    <input type="password" placeholder="Senha" id="senha">
+    <button onclick="login()">Login</button>
+    <button onclick="cadastro()">Cadastro</button>
+  </div>
 
   <script>
-    let usuarios = [];
+    function login() {
+      alert("Login realizado com sucesso!");
+      // depois daqui pode redirecionar para o chat
+    }
 
-    const loginForm = document.getElementById("loginForm");
-    const cadastroForm = document.getElementById("cadastroForm");
-    const mostrarCadastro = document.getElementById("mostrarCadastro");
-    const mostrarLogin = document.getElementById("mostrarLogin");
-    const titulo = document.getElementById("titulo");
-
-    // Alternar para cadastro
-    mostrarCadastro.addEventListener("click", () => {
-      loginForm.classList.remove("active");
-      cadastroForm.classList.add("active");
-      mostrarCadastro.style.display = "none";
-      mostrarLogin.style.display = "block";
-      titulo.innerText = "Cadastro";
-    });
-
-    // Alternar para login
-    mostrarLogin.addEventListener("click", () => {
-      cadastroForm.classList.remove("active");
-      loginForm.classList.add("active");
-      mostrarLogin.style.display = "none";
-      mostrarCadastro.style.display = "block";
-      titulo.innerText = "Login";
-    });
-
-    // Cadastro
-    cadastroForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const usuario = document.getElementById("usuario").value;
-      const senha = document.getElementById("senha").value;
-
-      if (usuarios.find(u => u.usuario === usuario)) {
-        document.getElementById("mensagem").innerText = "Usuário já existe!";
-        return;
-      }
-
-      usuarios.push({ usuario, senha });
-      document.getElementById("mensagem").innerText = "Cadastro realizado!";
-      this.reset();
-    });
-
-    // Login
-    loginForm.addEventListener("submit", function(e) {
-      e.preventDefault();
-      const usuario = document.getElementById("loginUsuario").value;
-      const senha = document.getElementById("loginSenha").value;
-
-      const encontrado = usuarios.find(u => u.usuario === usuario && u.senha === senha);
-
-      if (encontrado) {
-        document.getElementById("mensagem").innerText = "Login realizado com sucesso!";
-      } else {
-        document.getElementById("mensagem").innerText = "Usuário ou senha incorretos!";
-      }
-    });
+    function cadastro() {
+      alert("Cadastro realizado com sucesso!");
+      // depois daqui também pode redirecionar
+    }
   </script>
+
 </body>
 </html>
-
-
