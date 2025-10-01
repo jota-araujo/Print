@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LGPD - Print</title>
+  <style>
+    /* ================= VARIÁVEIS ================= */
+    :root {
+      --bg: #F9FAFB;
+      --fontColor: #111111;
+      --accent: #62B28D;
+      --accentHover: #4B9472;
+      --btnFontColor: #FFFFFF;
+      --cardBg: #FFFFFF;
+    }
+
+    /* ================= ESTILO GERAL ================= */
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--fontColor);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      background: var(--cardBg);
+      width: 100%;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    header img {
+      max-width: 120px;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: var(--cardBg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: var(--accent);
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      text-align: justify;
+    }
+
+    b {
+      color: var(--accent);
+    }
+
+    /* ================= RESPONSIVO ================= */
+    @media (max-width: 600px) {
+      main {
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.5rem;
+      }
+      p {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="imagens/print.jpg" alt="Print">
+  </header>
+
+  <main>
+    <h1>LGPD</h1>
+    <p>A Print respeita a sua privacidade e está em conformidade com a Lei Geral de Proteção de Dados Pessoais (LGPD). Coletamos e tratamos seus dados pessoais exclusivamente para o pré-atendimento médico, garantindo a melhoria contínua do nosso serviço.</p>
+    
+    <p><b>Dados Coletados:</b> Coletamos informações como nome, idade, sexo, histórico médico e dados de contato para realizar o pré-atendimento médico com inteligência artificial.</p>
+
+    <p><b>Finalidade do Tratamento:</b> Seus dados são utilizados para:
+    <ul>
+      <li>Realizar o pré-atendimento médico.</li>
+      <li>Fornecer recomendações personalizadas de saúde.</li>
+      <li>Garantir a segurança e conformidade legal.</li>
+    </ul></p>
+
+    <p><b>Compartilhamento de Dados:</b> Seus dados não são compartilhados com terceiros, salvo quando exigido por lei.</p>
+
+    <p><b>Seus Direitos:</b> Você pode acessar, corrigir ou excluir seus dados a qualquer momento. Também pode revogar seu consentimento, sem afetar a legalidade do tratamento realizado até a revogação.</p>
+
+    <p><b>Consentimento:</b> Ao utilizar nossos serviços, você consente com o tratamento de seus dados pessoais conforme descrito nesta política.</p>
+  </main>
+</body>
+</html>
