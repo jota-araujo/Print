@@ -3,101 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Print</title>
+  <title>Print - Quem somos</title>
   <style>
-    /* ================= VARIÁVEIS ================= */
-    :root {
-      --bg: #F9FAFB;
-      --fontColor: #111111;
-      --accent: #62B28D;
-      --accentHover: #4B9472;
-      --btnFontColor: #FFFFFF;
-      --cardBg: #FFFFFF;
-    }
+/* ================= VARIÁVEIS ================= */
+:root {
+  --bg: #f5f7fa;         /* fundo da página */
+  --fontColor: #222;     /* cor padrão do texto */
+  --accent: #62B28D;     /* cor principal */
+  --accentHover: #4B9472;
+  --btnFontColor: #fff;
+  --cardBg: #fff;        /* fundo dos cards */
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --radius: 12px;
+}
 
-    /* ================= ESTILO GERAL ================= */
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg);
-      color: var(--fontColor);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+/* ================= ESTILO GERAL ================= */
+body {
+  font-family: "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--fontColor);
+  line-height: 1.6;
+}
 
-    header {
-      text-align: center;
-      padding: 2rem 1rem;
-      background: var(--cardBg);
-      width: 100%;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
+/* ================= HEADER ================= */
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  background: var(--cardBg);
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
 
-    header img {
-      max-width: 120px;
-    }
+header img {
+  max-width: 140px;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
 
-    main {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background: var(--cardBg);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
+header img:hover {
+  transform: scale(1.05);
+}
 
-    h1 {
-      color: var(--accent);
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
+/* ================= MAIN ================= */
+main {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: var(--cardBg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  animation: fadeIn 0.6s ease-in-out;
+}
 
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1rem;
-      text-align: justify;
-    }
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
 
-    b {
-      color: var(--accent);
-    }
+p {
+  font-size: 1.05rem;
+  margin-bottom: 1rem;
+  text-align: justify;
+}
 
-    /* ================= BOTÃO ================= */
-    /*.btn {
-      display: inline-block;
-      margin-top: 1.5rem;
-      padding: 0.8rem 1.5rem;
-      background: var(--accent);
-      color: var(--btnFontColor);
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background 0.3s;
-      text-decoration: none;
-    }
+b {
+  color: var(--accent);
+}
 
-    .btn:hover {
-      background: var(--accentHover);
-    }*/
+/* ================= BOTÃO ================= */
+.btn {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 0.9rem 1.8rem;
+  background: var(--accent);
+  color: var(--btnFontColor);
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+}
 
-    /* ================= RESPONSIVO ================= */
-    @media (max-width: 600px) {
-      main {
-        margin: 1rem;
-        padding: 1.5rem;
-      }
-      h1 {
-        font-size: 1.5rem;
-      }
-      p {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
+.btn:hover {
+  background: var(--accentHover);
+  transform: scale(1.05);
+}
+
+/* ================= ANIMAÇÃO ================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= RESPONSIVO ================= */
+@media (max-width: 768px) {
+  main {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  header img {
+    max-width: 100px;
+  }
+}
+</style>
 </head>
 <body>
   <header>
@@ -110,6 +136,18 @@
     <p>Nossa missão é <b>revolucionar o acesso à saúde</b>, proporcionando uma experiência eficiente e confiável para nossos usuários.</p>
     <p>Nosso objetivo é <b>facilitar a detecção precoce de doenças,</b> otimizar a <b>triagem médica</b> e direcionar os pacientes aos especialistas certos, reduzindo filas e melhorando a eficiência do sistema de saúde.</p>
     <p>Com a Print, você pode obter uma avaliação inicial de seus sintomas em poucos minutos, ajudando a identificar possíveis condições de saúde e orientando sobre os próximos passos a serem tomados.</p>
+    <br><br>
+    <h1>Como Funciona</h1>
+    <p>Nossa plataforma foi desenvolvida para oferecer um pré-diagnóstico rápido e acessível, ajudando você a entender melhor seus sintomas antes de buscar atendimento médico.</p>
+<p>O funcionamento é simples:</p>
+
+Informe seus sintomas de forma clara e objetiva.<br><br>
+
+A <b>Nossa IA </b>irá analisar as informações e sugerir possíveis condições de saúde relacionadas.
+<br><br>
+Você receberá orientações iniciais sobre os próximos passos, como cuidados básicos e a recomendação de procurar um profissional de saúde, quando necessário.
+
+<p> <b>⚠️ Importante:</b> O pré-diagnóstico é apenas uma sugestão informativa. Ele não substitui a consulta médica, mas pode ser um aliado para entender melhor sua saúde e buscar ajuda no momento certo.</p>
     
     <!--<a href="#" class="btn">Saiba Mais</a>*/-->
   </main>
